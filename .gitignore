@@ -1,0 +1,6 @@
+/out/
+/logs/
+.DS_Store
+.classpath
+/.idea/
+.project
