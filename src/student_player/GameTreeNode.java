@@ -13,6 +13,7 @@ public class GameTreeNode
     private ArrayList<GameTreeNode> children;
     private GameTreeNode parent;
 
+
     public int getSimNum()
     {
         return simNum;
@@ -23,9 +24,18 @@ public class GameTreeNode
         return winNum;
     }
 
-    public Move getMove()
+    public TablutMove getMove()
     {
         return move;
+    }
+
+    public ArrayList<GameTreeNode> getChildren()
+    {
+        return children;
+    }
+    public boolean isLeaf()
+    {
+        return children.isEmpty();
     }
 
     public GameTreeNode getParent()
@@ -40,6 +50,7 @@ public class GameTreeNode
         children = new ArrayList<>();
         simNum = 0;
         winNum = 0;
+
     }
 
     /**
@@ -53,6 +64,7 @@ public class GameTreeNode
         {
             children.add(new GameTreeNode(this, move));
         }
+
     }
 
     /**
