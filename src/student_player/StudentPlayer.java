@@ -22,15 +22,37 @@ public class StudentPlayer extends TablutPlayer {
      * make decisions.
      */
     public Move chooseMove(TablutBoardState boardState) {
-        // You probably will make separate functions in MyTools.
-        // For example, maybe you'll need to load some pre-processed best opening
-        // strategies...
-        MyTools.getSomething();
 
-        // Is random the best you can do?
+        long startTime = System.currentTimeMillis();
+
+        GameTreeNode root = new GameTreeNode(null, null);
+        MonteCarloTreeSimulation simulation = new MonteCarloTreeSimulation(root, boardState);
+
+        long currentTime = System.currentTimeMillis();
+
         Move myMove = boardState.getRandomMove();
+        int winner;
+        GameTreeNode simNode;
+        GameTreeNode childNode;
+
+        while(currentTime - startTime < 1800)
+        {
+            simNode = simulation.selectNode(root);
+            simNode.expandNode((simulation.getSimulationBoard(simNode)).getAllLegalMoves());
+            childNode = simNode.getChild();
+            winner = simulation.runSimulation(simulation.getSimulationBoard(childNode));
+            simulation.backPropagate(childNode, winner);
+            currentTime = System.currentTimeMillis();
+        }
+
+        if(!root.getChildren().isEmpty())
+        {
+            myMove = simulation.selectMove();
+
+        }
 
         // Return your move to be processed by the server.
+
         return myMove;
     }
 }

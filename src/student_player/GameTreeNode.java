@@ -88,7 +88,7 @@ public class GameTreeNode
         {
             winNum += 2;
         }
-        else if(parent.move.getPlayerID() == winPlayer)
+        else if(winPlayer == 1 || winPlayer == 0)
         {
             return;
         }
@@ -112,5 +112,16 @@ public class GameTreeNode
     }
 
 
+    public double getWinRate()
+    {
+        if(simNum != 0)
+        {
+            return ((double) winNum)/(simNum);
+        }
+        else
+        {
+            return 0;
+        }
+    }
 
 }

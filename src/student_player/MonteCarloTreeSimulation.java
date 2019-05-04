@@ -7,10 +7,17 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Stack;
 
-public class MonteCarloTreeSimulation
+public class MonteCarloTreeSimulation implements Cloneable
 {
     private GameTreeNode root;
     private TablutBoardState board;
+
+    public MonteCarloTreeSimulation(GameTreeNode root, TablutBoardState board)
+    {
+        this.root = root;
+        this.board = board;
+    }
+
 
     /**
      * Recursively finds the next node to run simulations on
@@ -19,9 +26,6 @@ public class MonteCarloTreeSimulation
      */
     public GameTreeNode selectNode(GameTreeNode node)
     {
-
-        double currentMax = Double.MIN_VALUE;
-
         if(node.isLeaf())
         {
             return node;
@@ -30,7 +34,6 @@ public class MonteCarloTreeSimulation
         GameTreeNode maxNode = Collections.max(node.getChildren(), Comparator.comparingDouble(n -> n.getUCT()));
 
         return selectNode(maxNode);
-
     }
 
     /**
@@ -48,7 +51,7 @@ public class MonteCarloTreeSimulation
 
         while(iterNode.getParent() != null)
         {
-            moves.push(node.getMove());
+            moves.push(iterNode.getMove());
             iterNode = iterNode.getParent();
         }
 
@@ -60,5 +63,56 @@ public class MonteCarloTreeSimulation
 
         return boardClone;
     }
+
+    /**
+     * Runs a simulation of the Tablut game from a given board state
+     * Each player plays a random move until the game is over
+     * @param board the current state of the game
+     * @return the winner of the simulation
+     */
+    public int runSimulation(TablutBoardState board)
+    {
+        TablutBoardState boardClone = (TablutBoardState) board.clone();
+        while(!boardClone.gameOver())
+        {
+            boardClone.processMove((TablutMove) boardClone.getRandomMove());
+        }
+        return boardClone.getWinner();
+    }
+
+    /**
+     * Back propagates the results of a simulation.
+     * Updates all the nodes to the root.
+     * @param node the node from where we run the simulation
+     * @param winner the winner of the simulation
+     */
+    public void backPropagate(GameTreeNode node, int winner)
+    {
+        GameTreeNode iterNode = node;
+        while(iterNode.getParent() != null)
+        {
+            iterNode.updateNode(winner);
+            iterNode = iterNode.getParent();
+        }
+
+    }
+
+    /**
+     * Iterates through all the children of the root and selects the one with the greatest win rate
+     * @return the move with the greatest win rate
+     */
+    public TablutMove selectMove()
+    {
+        GameTreeNode maxNode = Collections.max(root.getChildren(), Comparator.comparingDouble(n -> n.getWinRate()));
+        return maxNode.getMove();
+    }
+
+    @Override
+    public MonteCarloTreeSimulation clone()
+    {
+        return new MonteCarloTreeSimulation(root, board);
+    }
+
+
 
 }
