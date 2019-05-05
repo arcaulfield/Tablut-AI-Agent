@@ -89,7 +89,7 @@ public class MonteCarloTreeSimulation implements Cloneable
     public void backPropagate(GameTreeNode node, int winner)
     {
         GameTreeNode iterNode = node;
-        while(iterNode.getParent() != null)
+        while(iterNode != null)
         {
             iterNode.updateNode(winner);
             iterNode = iterNode.getParent();
@@ -104,6 +104,8 @@ public class MonteCarloTreeSimulation implements Cloneable
     public TablutMove selectMove()
     {
         GameTreeNode maxNode = Collections.max(root.getChildren(), Comparator.comparingDouble(n -> n.getWinRate()));
+        System.out.println("The move selected has a win rate of " + maxNode.getWinRate() + ", and " + maxNode.getSimNum() + "/" + root.getSimNum() + " simulations were ran on this node.");
+        System.out.println("The node was selected out of " + root.getChildren().size() + " nodes.");
         return maxNode.getMove();
     }
 
