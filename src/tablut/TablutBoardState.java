@@ -22,7 +22,7 @@ public class TablutBoardState extends BoardState {
     public static final int SWEDE = 1;
     public static final int MUSCOVITE = 0;
     public static final int BOARD_SIZE = 9; // 9x9 board for tablut
-    public static final int MAX_TURNS = 49;
+    public static final int MAX_TURNS = 19;
 
     public static enum Piece {
         BLACK, WHITE, KING, EMPTY

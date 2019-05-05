@@ -34,16 +34,28 @@ public class StudentPlayer extends TablutPlayer {
         int winner;
         GameTreeNode simNode;
         GameTreeNode childNode;
+        TablutBoardState simulationBoardState;
 
         while(currentTime - startTime < 1800)
         {
             simNode = simulation.selectNode(root);
-            simNode.expandNode((simulation.getSimulationBoard(simNode)).getAllLegalMoves());
-            childNode = simNode.getChild();
-            winner = simulation.runSimulation(simulation.getSimulationBoard(childNode));
+            simulationBoardState = simulation.getSimulationBoard(simNode);
+            if(!simulationBoardState.gameOver())
+            {
+                simNode.expandNode(simulationBoardState.getAllLegalMoves());
+                childNode = simNode.getRandomChild();
+                simulationBoardState.processMove(childNode.getMove());
+            }
+            else
+            {
+                childNode = simNode;
+            }
+            winner = simulation.runSimulation(simulationBoardState);
             simulation.backPropagate(childNode, winner);
             currentTime = System.currentTimeMillis();
         }
+
+        System.out.println(root.getSimNum() + " simulations were ran in 1800ms");
 
         if(!root.getChildren().isEmpty())
         {

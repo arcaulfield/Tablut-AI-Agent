@@ -68,11 +68,15 @@ public class GameTreeNode
     }
 
     /**
-     * @return the first child of this GameTreeNode
+     * @return the first child of this GameTreeNode or, if the node has no children, itself
      */
-    public GameTreeNode getChild()
+    public GameTreeNode getRandomChild()
     {
-        return children.get(0);
+        if(children.isEmpty())
+        {
+            return this;
+        }
+        return children.get((int)(Math.random() * children.size()));
     }
 
     /**
@@ -84,7 +88,7 @@ public class GameTreeNode
 
         simNum += 2;
 
-        if(move.getPlayerID() == winPlayer)
+        if(move != null && move.getPlayerID() == winPlayer)
         {
             winNum += 2;
         }
@@ -108,7 +112,7 @@ public class GameTreeNode
         {
             return Double.MAX_VALUE;
         }
-        return winNum + 1.41 * Math.sqrt((double) parent.simNum / simNum);
+        return getWinRate() + 1.41 * Math.sqrt((double) parent.simNum / simNum);
     }
 
 
