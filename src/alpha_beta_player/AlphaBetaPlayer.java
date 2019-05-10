@@ -2,6 +2,7 @@ package alpha_beta_player;
 
 import boardgame.Move;
 import tablut.TablutBoardState;
+import tablut.TablutMove;
 import tablut.TablutPlayer;
 
 /**
@@ -20,7 +21,22 @@ public class AlphaBetaPlayer extends TablutPlayer {
      * @return The move to play
      */
     public Move chooseMove(TablutBoardState boardState) {
-        return boardState.getRandomMove();
+
+        int max = Integer.MIN_VALUE;
+        TablutMove playMove = (TablutMove) boardState.getRandomMove();
+        for(TablutMove move: boardState.getAllLegalMoves())
+        {
+            TablutBoardState clone = (TablutBoardState) boardState.clone();
+            clone.processMove(move);
+            int val =  Minimax.minimax(3, false, clone, Integer.MIN_VALUE, Integer.MAX_VALUE, boardState.getTurnPlayer());
+            if (val > max)
+            {
+                max = val;
+                playMove = move;
+            }
+        }
+        return playMove;
+
     }
 
 

@@ -118,6 +118,27 @@ public class TablutBoardState extends BoardState {
         winner = boardState.getWinner(); 
     }
 
+    public int evaluateBoard(int agentPlayer)
+    {
+        if(this.getWinner() == agentPlayer)
+        {
+            return Integer.MAX_VALUE;
+        }
+        else if(this.getWinner() == 1 - agentPlayer)
+        {
+            return Integer.MIN_VALUE;
+        }
+        else if(this.gameOver())
+        {
+            return 0;
+        }
+
+        return (int) (100 * Math.random());
+    }
+
+
+
+
     @Override
     public Object clone() {
         return new TablutBoardState(this);
@@ -489,6 +510,7 @@ public class TablutBoardState extends BoardState {
         System.out.println();
     }
 
+
     public static void main(String[] args) {
         TablutBoardState b = new TablutBoardState();
 
@@ -542,4 +564,7 @@ public class TablutBoardState extends BoardState {
         }
         System.out.println();
     }
+
+
+
 }
