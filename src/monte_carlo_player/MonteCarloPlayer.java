@@ -1,25 +1,22 @@
-package student_player;
+package monte_carlo_player;
 
 import boardgame.Move;
 import tablut.TablutBoardState;
 import tablut.TablutPlayer;
 
-/** A player file submitted by a student. */
-public class StudentPlayer extends TablutPlayer {
+/**
+ * AI agent playing with a monte carlo tree search method.
+ */
+public class MonteCarloPlayer extends TablutPlayer {
 
-    /**
-     * You must modify this constructor to return your student number. This is
-     * important, because this is what the code that runs the competition uses to
-     * associate you with your agent. The constructor should do nothing else.
-     */
-    public StudentPlayer() {
-        super("Goose Player");
+    public MonteCarloPlayer() {
+        super("MonteCarlo Player");
     }
 
     /**
-     * This is the primary method that you need to implement. The ``boardState``
-     * object contains the current state of the game, which your agent must use to
-     * make decisions.
+     * Chooses the best move to play given a board state
+     * @param boardState The current board state.
+     * @return The move to play
      */
     public Move chooseMove(TablutBoardState boardState) {
 

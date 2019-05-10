@@ -1,4 +1,4 @@
-package student_player;
+package monte_carlo_player;
 
 public class MyTools {
     public static double getSomething() {

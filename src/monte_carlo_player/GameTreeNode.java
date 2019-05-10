@@ -1,6 +1,5 @@
-package student_player;
+package monte_carlo_player;
 
-import boardgame.Move;
 import tablut.TablutMove;
 
 import java.util.ArrayList;

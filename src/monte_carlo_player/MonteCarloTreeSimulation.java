@@ -1,4 +1,4 @@
-package student_player;
+package monte_carlo_player;
 
 import tablut.TablutBoardState;
 import tablut.TablutMove;
