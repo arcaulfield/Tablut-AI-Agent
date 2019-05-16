@@ -28,7 +28,7 @@ public class AlphaBetaPlayer extends TablutPlayer {
         {
             TablutBoardState clone = (TablutBoardState) boardState.clone();
             clone.processMove(move);
-            int val =  Minimax.minimax(3, false, clone, Integer.MIN_VALUE, Integer.MAX_VALUE, boardState.getTurnPlayer());
+            int val =  Minimax.minimax(2, false, clone, Integer.MIN_VALUE, Integer.MAX_VALUE, boardState.getTurnPlayer());
             if (val > max)
             {
                 max = val;
