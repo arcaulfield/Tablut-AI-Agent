@@ -133,11 +133,59 @@ public class TablutBoardState extends BoardState {
             return 0;
         }
 
-        return (int) (100 * Math.random());
+        if(agentPlayer == SWEDE)
+        {
+            return evaluateSwede() - evaluateMuscovite();
+        }
+        else
+        {
+            return evaluateMuscovite() - evaluateSwede();
+        }
+
     }
 
+    public int evaluateSwede()
+    {
+        int kingDistance = Coordinates.distanceToClosestCorner(kingPosition);
+        int sizeOfSwede = (int) ((swedeCoords.size() / 9.0) * 10);
+        return (9 - kingDistance) * 3 + sizeOfSwede;
+    }
 
+    public int evaluateMuscovite()
+    {
+        int sizeOfMuscovite = (int) ((muscoviteCoords.size() / 16.0) * 10);
+        int numKingNeighbourPieces = getNeighbourPieces(kingPosition, Piece.BLACK).size();
+        return sizeOfMuscovite + 3 * numKingNeighbourPieces;
+    }
 
+    /**
+     * Finds the coordinates of the neighbours of a piece
+     * @param position the position of the piece whose neighbours we want to find
+     * @param colour the colour of the neighbours we are looking for
+     * @return a list of all the coordinates of the neighbours to a piece of a certain colour
+     */
+    public List<Coord> getNeighbourPieces(Coord position, Piece colour)
+    {
+        List<Coord> neighbours = new ArrayList<>();
+
+        if(getPieceAt(position.x, position.y + 1) == colour)
+        {
+            neighbours.add(Coordinates.get(position.x, position.y + 1));
+        }
+        else if(getPieceAt(position.x + 1, position.y) == colour)
+        {
+            neighbours.add(Coordinates.get(position.x + 1, position.y));
+        }
+        else if(getPieceAt(position.x - 1, position.y) == colour)
+        {
+            neighbours.add(Coordinates.get(position.x - 1, position.y));
+        }
+        else if(getPieceAt(position.x, position.y - 1) == colour)
+        {
+            neighbours.add(Coordinates.get(position.x, position.y - 1));
+        }
+        return neighbours;
+    }
 
     @Override
     public Object clone() {
