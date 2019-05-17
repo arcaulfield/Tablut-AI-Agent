@@ -109,6 +109,29 @@ public class MonteCarloTreeSimulation implements Cloneable
         return maxNode.getMove();
     }
 
+    /**
+     * Iterates through all the children of the root and selects the one with the greatest (win_rate + evaluation_function * 0.01)
+     * @param boardState state of the board when the agent needs to select a move
+     * @return the move with the greatest (win_rate + evaluation_function * 0.01) value
+     */
+    public TablutMove selectMove(TablutBoardState boardState)
+    {
+        GameTreeNode maxNode = null;
+        double maxRate = Integer.MIN_VALUE;
+        for(GameTreeNode node : root.getChildren())
+        {
+            TablutBoardState clone = (TablutBoardState) boardState.clone();
+            clone.processMove(node.getMove());
+            if(node.getWinRate() + (0.01 * clone.evaluateBoard(clone.getTurnPlayer())) > maxRate)
+            {
+                maxNode = node;
+                maxRate = node.getWinRate() + (0.01 * clone.evaluateBoard(boardState.getTurnPlayer()));
+            }
+        }
+        return maxNode.getMove();
+    }
+
+
     @Override
     public MonteCarloTreeSimulation clone()
     {

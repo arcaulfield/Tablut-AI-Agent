@@ -56,7 +56,7 @@ public class MonteCarloPlayer extends TablutPlayer {
 
         if(!root.getChildren().isEmpty())
         {
-            myMove = simulation.selectMove();
+            myMove = simulation.selectMove(boardState);
 
         }
 
