@@ -10,9 +10,9 @@ On their turn, each player moves one of their pieces. All pieces can move to any
 A piece is captured if, as a result of an opponent's move, it is "sandwiched" between two opponent pieces, or it is "sandwiched" between the an opponent piece and either a corner square or the centre piece. When the king is in the centre square or in a position that neighbours the centre, it requires extra protection and must be completely surrounded by four opponent pieces to be captured. A captured piece is removed from the board. 
 ## The Agent's Strategy
 The AI agent uses a minimax algorithm with alpha beta pruning, in order to determine its optimal move. To find the utility of a player at each node of the minimax game tree, an evaluation function is used. This determines how beneficial a board state is for the player. The evaluation function is a function of:
-# whether or not a player had one, or if the players tied
-# the amount of the agent player's pieces on the board 
-# the amount of the opponent player's pieces on the board 
-# the proximity of the king to the corner
-# the number of opponent pieces neighbouring the king 
+* whether or not a player had one, or if the players tied
+* the amount of the agent player's pieces on the board 
+* the amount of the opponent player's pieces on the board 
+* the proximity of the king to the corner
+* the number of opponent pieces neighbouring the king 
 This strategy is quite effective. Give it a try and see if you can beat it! 
