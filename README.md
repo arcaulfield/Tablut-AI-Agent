@@ -16,6 +16,6 @@ The AI agent uses a minimax algorithm with alpha beta pruning, in order to deter
 * the amount of the agent player's pieces on the board 
 * the amount of the opponent player's pieces on the board 
 * the proximity of the king to the corner
-* the number of opponent pieces neighbouring the king <br />
+* the number of opponent pieces neighbouring the king
 <br />
 Give it a try and see if you can beat it! 
