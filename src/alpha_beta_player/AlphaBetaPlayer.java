@@ -21,7 +21,7 @@ public class AlphaBetaPlayer extends TablutPlayer {
      * @return The move to play
      */
     public Move chooseMove(TablutBoardState boardState) {
-
+        long startTime = System.currentTimeMillis();
         int max = Integer.MIN_VALUE;
         TablutMove playMove = (TablutMove) boardState.getRandomMove();
         for(TablutMove move: boardState.getAllLegalMoves())
@@ -35,6 +35,10 @@ public class AlphaBetaPlayer extends TablutPlayer {
                 playMove = move;
             }
         }
+        long endTime = System.currentTimeMillis();
+
+        System.out.println("Move chosen in " + (endTime - startTime) + "ms.");
+
         return playMove;
 
     }
