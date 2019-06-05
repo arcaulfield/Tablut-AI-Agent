@@ -26,6 +26,7 @@ This AI agent uses a minimax algorithm with alpha beta pruning, in order to dete
 <br />
 This strategy proved to be much more effective than Monte Carlo tree search. The agent is able to consistantly beat the greedy agent, the random agent and the agent using the Monte Carlo tree search strategy. 
 <br />
+<br />
 Give it a try and see if you can beat it! 
 
 
