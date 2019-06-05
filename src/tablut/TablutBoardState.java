@@ -118,6 +118,12 @@ public class TablutBoardState extends BoardState {
         winner = boardState.getWinner(); 
     }
 
+
+    /**
+     * Uses an evaluation function to determine how beneficial the current board state is for the agentPlayer
+     * @param agentPlayer the player ID of the AI
+     * @return
+     */
     public int evaluateBoard(int agentPlayer)
     {
         if(this.getWinner() == agentPlayer)
@@ -144,6 +150,12 @@ public class TablutBoardState extends BoardState {
 
     }
 
+    /**
+     * Evaluates the state of the board in the perspective of the Swede player.
+     * Calculates the score of the board, by adding beneficial elements for the Swede player.
+     * The higher the score, the better the board is for the player
+     * @return a score reflecting the state of the board for the Swede player.
+     */
     public int evaluateSwede()
     {
         int kingDistance = Coordinates.distanceToClosestCorner(kingPosition);
@@ -151,6 +163,12 @@ public class TablutBoardState extends BoardState {
         return (9 - kingDistance) * 3 + sizeOfSwede;
     }
 
+    /**
+     * Evaluates the state of the board in the perspective of the Muscovite player.
+     * Calculates the score of the board, by adding beneficial elements for the Muscovite player.
+     * The higher the score, the better the board is for the player.
+     * @return a score reflecting the state of the board for the Muscovite player.
+     */
     public int evaluateMuscovite()
     {
         int sizeOfMuscovite = (int) ((muscoviteCoords.size() / 16.0) * 10);
