@@ -15,10 +15,10 @@ In order to compare strategies and determine the more effective one, two differe
 <br />
 It quickly became clear that the Monte Carlo tree search strategy was not very effective. The agent could not 
 
-# Monte Carlo Tree Search
+### Monte Carlo Tree Search
 
 
-# Minimax Alpha Beta Pruning
+### Minimax Alpha Beta Pruning
 This AI agent uses a minimax algorithm with alpha beta pruning, in order to determine its optimal move. To find the utility of a player at each node of the minimax game tree, an evaluation function is used. This determines how beneficial a board state is for the player. The evaluation function is a function of:
 * whether or not a player had one, or if the players tied
 * the amount of the agent player's pieces on the board 
