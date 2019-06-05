@@ -12,11 +12,9 @@ On their turn, each player moves one of their pieces. All pieces can move to any
 A piece is captured if, as a result of an opponent's move, it is "sandwiched" between two opponent pieces, or it is "sandwiched" between the an opponent piece and either a corner square or the centre square. When the king is in the centre square or in a position that neighbours the centre, it requires extra protection and must be completely surrounded by four opponent pieces to be captured. A captured piece is removed from the board. 
 ## Two Strategies
 In order to compare strategies and determine the more effective one, two different AI agents were created. One uses Monte Carlo tree search, while the other uses minimax alpha beta pruning. Both agents were also compared with an agent that plays randomly, and an agent that uses a greedy strategy. 
-<br />
-It quickly became clear that the Monte Carlo tree search strategy was not very effective. The agent could not 
 
 ### Monte Carlo Tree Search
-
+The first AI agent uses Monte Carlo tree search with the UCT formula. Due to the move limit and the large amount potential moves, there is a very high probability that randomly playing agents will tie for this game. Therefore, this strategy is not very effective. Often, after running this algorithm, the win rate is very close to 0.5 for each potential move, making the agent select a move almost randomly. However, when the agent is able to win in one move, it selects this move. This agent could not beat the agent using a greedy strategy and it could only be the randomly playing agent sometimes. 
 
 ### Minimax Alpha Beta Pruning
 This AI agent uses a minimax algorithm with alpha beta pruning, in order to determine its optimal move. To find the utility of a player at each node of the minimax game tree, an evaluation function is used. This determines how beneficial a board state is for the player. The evaluation function is a function of:
@@ -26,6 +24,6 @@ This AI agent uses a minimax algorithm with alpha beta pruning, in order to dete
 * the proximity of the king to the corner
 * the number of opponent pieces neighbouring the king
 <br />
-This strategy proved much more effective than Monte Carlo tree search. 
+This strategy proved to be much more effective than Monte Carlo tree search. 
 
 Give it a try and see if you can beat it! 
