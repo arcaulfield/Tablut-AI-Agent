@@ -2,7 +2,7 @@
 
 AI agent for Tablut, a deterministic board game with no hidden information 
 
-<img src="https://github.com/arcaulfield/Tablut-AI-Agent/blob/master/StartingBoard.png" width="450"/>
+<img src="https://github.com/arcaulfield/Tablut-AI-Agent/blob/master/StartingBoard.png" width="400"/>
 
 ## The Game
 Tablut is a variant of the classic Viking board game Hnefatafl. The game consists of two players, the Swedes (white) and the Muscovites (black), and is played on a 9-by-9 board. The Muscovites, who start with 16 pieces, play first. Their goal is to capture the swedish king. On the other hand, the Swedes start with 9 pieces. They fight to protect their king. In order to do this, they must move him to one of the four corners of the board. The swedish king starts in the centre of the board and is the piece that is marked with a "K". The player that accomplishes their goal first wins. The players tie if 40 moves have been played and neither player has won. The game ends when either a player has won, or the move limit has been reached. <br />
